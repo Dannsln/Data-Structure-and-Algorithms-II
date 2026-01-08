@@ -36,11 +36,7 @@ public class List {
                 first.linkLeft = arise;
                 last = arise;
             }
-
-
         }
-
-
 
         return data;
     }
@@ -129,10 +125,9 @@ public class List {
                             Node saveData = find;
 
                             if (find==first) {
-                                saveData.linkRigth = find;
-                                find.linkLeft = last;
-                                last.linkRigth = find;
-                                find = first;
+                                first = first.linkRigth; 
+                                first.linkLeft = last;
+                                last.linkRigth = first;
                             } else if(find==last){
                                 saveData.linkLeft = find;
                                 find.linkRigth = first;
