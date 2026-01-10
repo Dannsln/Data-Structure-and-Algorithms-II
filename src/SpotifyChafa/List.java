@@ -8,11 +8,12 @@ public class List {
 
     Scanner sc = new Scanner(System.in);
 
-    Node first; Node last;
+    Node first; Node last;   Node current;
 
     public boolean isEmpty(){
         return first == null;
     }
+
 
     public Song[] settleList(){
 
@@ -35,6 +36,9 @@ public class List {
                 last = arise;
             }
         }
+
+        current = first;
+
         return data;
     }
 
@@ -52,17 +56,78 @@ public class List {
         } while (n!=first);
     }
 
+
+  
+
     public void playSong(){
 
+        if (current==null) {
+            System.out.println("Lista vacia");
+            return;
+        }
 
         System.out.println("---------Reproduciendo canción---------");
 
+        Node played = current;
+
         Node next;
         Node previous;
-        Node n = first;
-        boolean previousSong = first.linkLeft == last; //true
+        boolean previousSong = current.linkLeft == last; //true
+        boolean nextSong = current.linkRigth== first; // true
+       
+
+        
 
             if (previousSong) {
+
+            System.out.println(current.data.name+" | "+current.data.artist+" | "+current.data.duration);
+
+            //Siguiente canción
+            next = current.linkRigth;
+            System.out.println("Canción en cola : "+next.data.name+" | "+next.data.artist);
+            
+
+        } else if(nextSong){
+            current = current.linkRigth;
+            System.out.println(current.data.name+" | "+current.data.artist+" | "+current.data.duration);
+            
+            //Canción Posterior:
+            previous = current.linkLeft;
+            System.out.println("Canción Anterior: " +previous.data.name +" | " +previous.data.artist);
+
+        
+            
+        }  else if((!previousSong&&!nextSong)){
+            System.out.println(current.data.name+current.data.artist+current.data.duration);
+
+                //Siguiente canción:
+                next = current.linkRigth; 
+                System.out.println("Canción en cola: "+ next.data.name +" " + next.data.artist );
+
+                //Canción Posterior:
+                previous = current.linkLeft;
+                System.out.println("Canción Anterior: " +previous.data.name +" | " +previous.data.artist);
+
+                current = current.linkRigth;
+        }
+        
+    
+        
+     
+            
+       
+
+        if (played == last) {
+            System.out.println("Playlist terminada");
+            current=null;
+        }
+
+        if (first.linkLeft==first&&last.linkRigth==last) {
+            System.out.println("Ya no hay canciones en cola");
+            
+        }
+    
+            /*if (previousSong) {
                 System.out.println(first.data.name+first.data.artist+first.data.duration);
 
                 //Siguiente canción:
@@ -84,10 +149,10 @@ public class List {
                 } else{
                     System.out.println("Canción Anterior: " +previous.data.name +" | " +previous.data.artist);
                 }
-            }
-        
 
-            
+               
+            }
+        */
             //Canción Posterior:
             /* 
             previous = first.linkLeft;
@@ -97,45 +162,52 @@ public class List {
                 System.out.println("Canción Posterior: " +previous.data.name +" | " +previous.data.artist);
             }
             */
-            first = first.linkRigth; //Asociar enlaces
 
-            
-        do {
-            n = n.linkRigth;
-            
-        } while (n!=first);    
-
+           
+        
     }
 
 
     public void playPreviousSong(){
 
+        current = current.linkLeft;
+
+         System.out.println("---------Reproduciendo canción---------");
+       
+
         Node next;
         Node previous;
-        Node n = first;
-        boolean previousSong = first.linkLeft == last; //true
+        boolean previousSong = current.linkLeft == last; //true
+        boolean nextSong = current.linkRigth== first; // true
 
-        //Siguiente canción:
-        next = first.linkRigth;
-        //Canción Posterior:
-        previous = first.linkLeft;
-       
-       
-        
-        if (!previousSong) {
-             System.out.println("---------Reproduciendo canción---------");
-        System.out.println(previous.data.name+previous.data.artist+previous.data.duration);
-
-        first = previous;
+        if (previousSong) {
+            System.out.println("No hay canciones previas");
             
-        } else{
-            System.out.println("No hay ninguna canción anterior a la que estás reproduciendo en tu playlist");
-
         }
 
-        do {
-            n = n.linkRigth;
-            
-        } while (n!=first); 
+       if (nextSong) {
+        
+
+        System.out.println(current.data.name+current.data.artist);
+        next = current.linkRigth; previous = current.linkLeft;
+        //Cancion Anterior
+        System.out.println("Anterior : "+previous.data.name+" | "+previous.data.artist);
+        
+        //Cancion en cola
+        System.out.println("Canción en cola : "+next.data.name+" | "+next.data.artist);
+       } else if(!previousSong&&!nextSong){
+        current=current.linkLeft;
+        System.out.println(current.data.name+current.data.artist);
+        next = current.linkRigth; previous = current.linkLeft;
+        //Cancion Anterior
+        System.out.println("Canción Anterior : "+previous.data.name+" | "+previous.data.artist);
+        
+        //Cancion en cola
+        System.out.println("Canción en cola : "+next.data.name+" | "+next.data.artist);
+
+       }
+        
+
+
     }
 }
