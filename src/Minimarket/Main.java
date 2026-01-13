@@ -35,14 +35,18 @@ public class Main {
             option = sc.nextInt();
             switch (option) {
                 case 1:
+                    togame.settleList();
                     
                     break;
             
                 case 2:
 
                     break;
+                    
 
                 case 3:
+                    togame.insertAtTheEnd();
+                    togame.viewLinkedList();
 
                     break;
 

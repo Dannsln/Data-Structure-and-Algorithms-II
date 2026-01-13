@@ -2,8 +2,6 @@ package Minimarket;
 
 import java.util.Scanner;
 
-import Shikai.Patient;
-
 public class List {
 
     Node first;
@@ -13,9 +11,16 @@ public class List {
 
     public Customer readData(){
 
-        System.out.println("Ingresa turno: ");
-        int turn = sc.nextInt();
-        Customer x = new Customer(turn);
+        System.out.println("Ingresa nombre: ");
+        String firstName = sc.nextLine();
+        System.out.println("Ingresa apellido: ");
+        String secondName = sc.nextLine();
+        System.out.println("Ingresa DNI: ");
+        String dni = sc.nextLine();
+        System.out.println("Ingresa email: ");
+        String email = sc.nextLine();
+     
+        Customer x = new Customer(firstName, secondName, dni, email);
         return x;
     }
 
@@ -27,17 +32,12 @@ public class List {
     public Customer[] settleList (){
 
         Customer [] data = new Customer[10];
-        data[0] = new Customer(1);
-        data[1] = new Customer(2);
-        data[2] = new Customer(3);
-        data[3] = new Customer(4);
-        data[4] = new Customer(5);
-        data[5] = new Customer(6);
-        data[6] = new Customer(7);
-        data[7] = new Customer(8);
-        data[8] = new Customer(9);
-        data[9] = new Customer(10);
-
+        data[0] = new Customer("Pedrito", "Bazar", "50324231", "pedrito.com", 1);
+        data[1] = new Customer("Pepito", "Contreras", "43242941", "pepito.com", 2);
+        data[2] = new Customer("Londrady", "Ramos", "42142193", "laika.com", 3);
+        data[3] = new Customer("Dann", "Pérez", "60880140", "dannsln.lune@gmail.com", 4);
+        data[4] = new Customer("Dany", "Mondragon", "60880141", "nott.slc@gmail.com", 5);
+        
         for(Customer p : data){
             Node arise = new Node(p);
 
@@ -75,11 +75,13 @@ public class List {
     }
 
     public void insertAtTheEnd(){
-        Node arise = new Node();
+        Node arise = new Node(readData());
         if (isEmpty()) {
             first = arise; last = arise;
             arise.linkLeft = arise; arise.linkRigth = arise;  
+            arise.data.turn = 1;
         } else{
+            arise.data.turn = last.data.turn+1;
             last.linkRigth = arise; first.linkLeft = arise;
             arise.linkLeft = last; arise.linkRigth = first;
             last = arise;
@@ -94,7 +96,11 @@ public class List {
         Node n = first;
 
         do {
+            System.out.println("Nombre Cliente :" +n.data.firstName+" "+n.data.secondName);
+            System.out.println("DNI :"+first.data.dni);
+            System.out.println("Email : "+first.data.email);
             System.out.println("Cliente con turno: "+n.data.turn);
+            
 
             n= n.linkRigth;
             
@@ -117,6 +123,10 @@ public class List {
             }
         }
 
+        System.out.println("Atendiendo a :" +first.data.firstName);
+        System.out.println("Atendiendo a: "+first.data.secondName);
+        System.out.println("Atendiendo a :"+first.data.dni);
+        System.out.println("Atendiendo a : "+first.data.email);
         System.out.println("Atendiendo a turno :" +first.data.turn);
         first = first.linkRigth;
         first.linkLeft = last;

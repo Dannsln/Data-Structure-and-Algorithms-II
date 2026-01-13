@@ -85,12 +85,11 @@ public class List {
             //Siguiente canción
             next = current.linkRigth;
             System.out.println("Canción en cola : "+next.data.name+" | "+next.data.artist);
-            
+            current = current.linkRigth;
 
         } else if(nextSong){
-            current = current.linkRigth;
+
             System.out.println(current.data.name+" | "+current.data.artist+" | "+current.data.duration);
-            
             //Canción Posterior:
             previous = current.linkLeft;
             System.out.println("Canción Anterior: " +previous.data.name +" | " +previous.data.artist);
@@ -162,15 +161,10 @@ public class List {
                 System.out.println("Canción Posterior: " +previous.data.name +" | " +previous.data.artist);
             }
             */
-
-           
-        
     }
 
 
     public void playPreviousSong(){
-
-        current = current.linkLeft;
 
          System.out.println("---------Reproduciendo canción---------");
        
@@ -187,7 +181,7 @@ public class List {
 
        if (nextSong) {
         
-
+        current=current.linkLeft;
         System.out.println(current.data.name+current.data.artist);
         next = current.linkRigth; previous = current.linkLeft;
         //Cancion Anterior
