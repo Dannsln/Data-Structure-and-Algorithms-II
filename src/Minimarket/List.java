@@ -31,7 +31,7 @@ public class List {
 
     public Customer[] settleList (){
 
-        Customer [] data = new Customer[10];
+        Customer [] data = new Customer[5];
         data[0] = new Customer("Pedrito", "Bazar", "50324231", "pedrito.com", 1);
         data[1] = new Customer("Pepito", "Contreras", "43242941", "pepito.com", 2);
         data[2] = new Customer("Londrady", "Ramos", "42142193", "laika.com", 3);

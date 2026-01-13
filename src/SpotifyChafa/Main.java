@@ -54,7 +54,7 @@ public class Main {
                     break;
 
                 case 6:
-                    quincy.playSong();
+                    quincy.nextSong();
                     
 
                     break;

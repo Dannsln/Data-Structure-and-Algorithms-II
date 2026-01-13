@@ -36,6 +36,7 @@ public class Main {
             switch (option) {
                 case 1:
                     togame.settleList();
+                    togame.viewLinkedList();
                     
                     break;
             
